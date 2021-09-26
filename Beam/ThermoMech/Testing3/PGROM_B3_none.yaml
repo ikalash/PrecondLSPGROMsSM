@@ -1,0 +1,149 @@
+%YAML 1.1
+---
+ANONYMOUS:
+  Debug Output:
+    #Write Jacobian to MatrixMarket: 100
+    #Write Residual to MatrixMarket: 100
+    Compute Jacobian Condition Number: 100
+  Problem: 
+    Name: Mechanics 3D
+    Solution Method: Continuation
+    Model Order Reduction: 
+      'Reduced-Order Model': 
+        Activate: true
+        System Reduction: Minimum Residual
+        Basis Source Type: Stk
+        First Vector Rank: 1
+        Number of Free Modes: 3
+        Origin: First Basis Vector
+        Number of DBC Modes: 4
+        Preconditioner Type: None
+        Output Trace: false
+        #Write Jacobian to File: 100
+        #Write Reduced Jacobian to File: 100
+        #Write Residual to File: 100
+        #Write Solution to File: 0
+        #Write Preconditioner to File: 100
+        Generalized Coordinates Output File Name: GC_PGROM_B3_none.mtx
+        Generalized Coordinates Stamps Output File Name: S_PGROM_B3_none.mtx
+        Enable QR: false
+    MaterialDB Filename: FOMmat.yaml
+    Temperature: 
+      Variable Type: DOF
+    Dirichlet BCs: 
+      SDBC on NS nodelist_1 for DOF Z: 0.00000000000000000e+00
+      SDBC on NS nodelist_2 for DOF Y: 0.00000000000000000e+00
+      SDBC on NS nodelist_3 for DOF X: 0.00000000000000000e+00
+      Time Dependent SDBC on NS nodelist_3 for DOF T: 
+        Number of points: 2
+        Time Values: [0.0, 720.0]
+        BC Values: [293.0, 393.0]
+    Neumann BCs: 
+      Time Dependent NBC on SS surface_1 for DOF all set P: 
+        Time Values: [0.00000000000000000e+00, 9.85200000000000045e+02, 3.60000000000000000e+03]
+        BC Values: [[0.00000000000000000e+00], [7.15248332000000030e+06], [2.61357490400000000e+07]]
+    Initial Condition: 
+      Function: Constant
+      Function Data: [0.00000000000000000e+00, 0.00000000000000000e+00, 0.00000000000000000e+00, 3.00000000000000000e+02]
+    Parameters: 
+      Number: 1
+      Parameter 0: Time
+    Response Functions: 
+      Number: 1
+      Response 0: Solution Average
+    Compute Sensitivities: false
+  Discretization: 
+    Method: Ioss
+    Exodus Input File Name: /gpfs1/plindsa/ROMtests_with_Jacobian_check/THERMO_brick_param_sweep_neoHook_wTempBC_mods_TIMING/LHS_4inputs_6samples/output3/RBpar/RB.exo
+    Exodus Output File Name: ROMpar/PGROM_B3_none.exo
+    Solution Vector Components: [disp, V, Temp, S]
+    Residual Vector Components: [force, V, TempRes, S]
+    Separate Evaluators by Element Block: true
+    Restart Index: 1
+  Regression Results: 
+    Number of Comparisons: 0
+  Piro: 
+    LOCA: 
+      Bifurcation: { }
+      Constraints: { }
+      Predictor: 
+        Method: Constant
+      Stepper: 
+        Continuation Method: Natural
+        Initial Value: 0.00000000000000000e+00
+        Continuation Parameter: Time
+        Max Steps: 719
+        Max Value: 7.20000000000000000e+03
+        Min Value: 0.00000000000000000e+00
+        Compute Eigenvalues: false
+        Eigensolver: 
+          Method: Anasazi
+          Operator: Jacobian Inverse
+          Num Eigenvalues: 1
+      Step Size: 
+        Initial Step Size: 1.00000000000000000e+00
+        Method: Constant
+    NOX: 
+      Direction: 
+        Method: Newton
+        Newton: 
+          Forcing Term Method: Constant
+          Rescue Bad Newton Solve: true
+          Stratimikos Linear Solver: 
+            NOX Stratimikos Options: { }
+            Stratimikos: 
+              Linear Solver Type: Amesos
+              Linear Solver Types: 
+                Amesos: 
+                  Solver Type: Lapack
+              Preconditioner Type: ML
+              Preconditioner Types: 
+                ML: 
+                  Base Method Defaults: none
+                  ML Settings: 
+                    ML output: 0
+                    default values: SA
+                    prec type: MGV
+                    max levels: 10
+                    'repartition: enable': 1
+                    'repartition: Zoltan dimensions': 3
+                    'repartition: min per proc': 1000
+                    'smoother: type': 'ML symmetric Gauss-Seidel'
+                    'smoother: damping factor': 5.00000000000000000e-01
+                    'smoother: sweeps': 3
+                    'smoother: pre or post': both
+                    'coarse: max size': 500
+                    'coarse: type': 'Amesos-KLU'
+                    analyze memory: true
+                    'aggregation: type': MIS
+      Line Search: 
+        Full Step: 
+          Full Step: 1.00000000000000000e+00
+        Method: Full Step
+      Nonlinear Solver: Line Search Based
+      Printing: 
+        Output Information: 
+          Error: true
+          Warning: true
+          Outer Iteration: true
+          Parameters: false
+          Details: false
+          Linear Solver Details: false
+          Stepper Iteration: true
+          Stepper Details: true
+          Stepper Parameters: true
+        Output Precision: 3
+        Output Processor: 0
+      Solver Options: 
+        Status Test Check Type: Complete
+      Status Tests: 
+        Test Type: Combo
+        Combo Type: OR
+        Number of Tests: 2
+        Test 1:
+          Test Type: NormF
+          Scale Type: Unscaled
+          Tolerance: 1.0e-5
+        Test 2:
+          Test Type: FiniteValue
+...

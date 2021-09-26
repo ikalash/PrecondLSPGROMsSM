@@ -1,0 +1,82 @@
+<ParameterList>
+  <ParameterList name="Problem">
+    <Parameter name="Name" type="string" value="Mechanics 3D"/>
+    <Parameter name="Solution Method" type="string" value="Continuation"/>
+
+    <!--Parameter name="Phalanx Graph Visualization Detail" type="int" value="2"/-->
+
+    <!-- XML filename with material definitions -->
+    <Parameter name="MaterialDB Filename" type="string" value="sample1/FOMmat.yaml"/>
+
+    <ParameterList name="Temperature">
+      <Parameter name="Variable Type" type="string" value="DOF"/>
+    </ParameterList>
+
+    <ParameterList name="Dirichlet BCs">
+      <Parameter name="SDBC on NS nodelist_1 for DOF Z" type="double" value="0.0"/>
+      <Parameter name="SDBC on NS nodelist_2 for DOF Y" type="double" value="0.0"/>
+      <Parameter name="SDBC on NS nodelist_3 for DOF X" type="double" value="0.0"/>
+      <ParameterList name="Time Dependent SDBC on NS nodelist_3 for DOF T">
+        <Parameter name="Number of points" type="int" value="2"/>
+        <Parameter name="Time Values" type="Array(double)" value="{ 0.0, 720.0 }"/>
+        <Parameter name="BC Values" type="Array(double)"   value="{ 293.0, 393.0 }"/>
+      </ParameterList>
+    </ParameterList>
+    <ParameterList name="Neumann BCs">
+      <ParameterList name="Time Dependent NBC on SS surface_1 for DOF all set P">
+        <Parameter name="Time Values" type="Array(double)" value="{ 0.0, 985.2, 3600 }"/>
+        <Parameter name="BC Values" type="TwoDArray(double)"   value="3x1:{ 0.0, 7152483.320, 26135749.040 }"/>
+      </ParameterList>
+    </ParameterList>
+    <ParameterList name="Initial Condition">
+      <Parameter name="Function" type="string" value="Constant"/>
+      <Parameter name="Function Data" type="Array(double)" value="{0.0,0.0,0.0,300.0}"/>
+    </ParameterList>
+    <ParameterList name="Parameters">
+      <Parameter name="Number" type="int" value="1"/>
+      <Parameter name="Parameter 0" type="string" value="Time"/>
+    </ParameterList>
+    <ParameterList name="Response Functions">
+      <Parameter name="Number" type="int" value="1"/>
+      <Parameter name="Response 0" type="string" value="Solution Average"/>
+    </ParameterList>
+  </ParameterList>
+  <ParameterList name="Discretization">
+    <Parameter name="Method" type="string" value="Ioss"/>
+    <Parameter name="Exodus Input File Name" type="string" value="sample1/FOM.exo"/>
+    <Parameter name="Exodus Output File Name" type="string" value="RB.exo"/>
+    <Parameter name="Solution Vector Components" type="Array(string)" value="{disp, V, Temp, S}"/>
+    <Parameter name="Residual Vector Components" type="Array(string)" value="{force, V, TempRes, S}"/>
+    <Parameter name="Number Of Time Derivatives" type="int" value="0"/>
+  </ParameterList>
+  <ParameterList name="Reduced Basis">
+    <ParameterList name="Reduced Basis Method">
+      <Parameter name="Method" type="string" value="Lapack POD"/>
+    </ParameterList>
+    <ParameterList name="Snapshot Preprocessing">
+      <Parameter name="Type" type="string" value="Substract First Vector"/>
+    </ParameterList>
+    <ParameterList name="Blocking List">
+      <Parameter name="Number" type="int" value="4"/>
+      <ParameterList name="Entry 0">
+        <Parameter name="Node Set" type="string" value="nodelist_1"/>
+        <Parameter name="Dof" type="int" value="2"/>
+      </ParameterList>
+      <ParameterList name="Entry 1">
+        <Parameter name="Node Set" type="string" value="nodelist_2"/>
+        <Parameter name="Dof" type="int" value="1"/>
+      </ParameterList>
+      <ParameterList name="Entry 2">
+        <Parameter name="Node Set" type="string" value="nodelist_3"/>
+        <Parameter name="Dof" type="int" value="0"/>
+      </ParameterList>
+      <ParameterList name="Entry 3">
+        <Parameter name="Node Set" type="string" value="nodelist_3"/>
+        <Parameter name="Dof" type="int" value="3"/>
+      </ParameterList>
+    </ParameterList>
+    <ParameterList name="Snapshot Sources">
+      <Parameter name="File Names" type="Array(string)" value="{sample1/FOM.exo, sample2/FOM.exo, sample3/FOM.exo, sample4/FOM.exo, sample5/FOM.exo, sample6/FOM.exo}"/>
+    </ParameterList>
+  </ParameterList>
+</ParameterList>
