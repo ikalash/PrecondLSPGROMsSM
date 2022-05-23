@@ -105,7 +105,7 @@ ANONYMOUS:
       Line Search: 
         Full Step: 
           Full Step: 1.00000000000000000e+00
-        Method: Full Step
+        Method: Backtrack
       Nonlinear Solver: Line Search Based
       Printing: 
         Output Information: 
