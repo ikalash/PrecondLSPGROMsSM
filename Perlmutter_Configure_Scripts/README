@@ -1,0 +1,4 @@
+When compiling Trilinos, please overwrite Makefile.kokkos in 
+Trilinos/packages/kokkos/Makefile.kokkos with the version of this 
+file found in this directory.  That should avoid compilation 
+errors on Perlmutter as of 11/1/2024.

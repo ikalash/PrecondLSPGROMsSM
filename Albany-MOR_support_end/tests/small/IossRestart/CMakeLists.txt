@@ -1,0 +1,83 @@
+
+
+# 1. Copy Input file from source to binary dir
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.xml
+               ${CMAKE_CURRENT_BINARY_DIR}/input.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/inputT.xml
+               ${CMAKE_CURRENT_BINARY_DIR}/inputT.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/inputRefine.xml
+               ${CMAKE_CURRENT_BINARY_DIR}/inputRefine.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input2Refine.xml
+               ${CMAKE_CURRENT_BINARY_DIR}/input2Refine.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/inputEnrich.xml
+               ${CMAKE_CURRENT_BINARY_DIR}/inputEnrich.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/inputConvert.xml
+               ${CMAKE_CURRENT_BINARY_DIR}/inputConvert.xml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/quadOut.exo
+               ${CMAKE_CURRENT_BINARY_DIR}/quadOut.exo COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/quadOut.exo.4.0
+               ${CMAKE_CURRENT_BINARY_DIR}/quadOut.exo.4.0 COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/quadOut.exo.4.1
+               ${CMAKE_CURRENT_BINARY_DIR}/quadOut.exo.4.1 COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/quadOut.exo.4.2
+               ${CMAKE_CURRENT_BINARY_DIR}/quadOut.exo.4.2 COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/quadOut.exo.4.3
+               ${CMAKE_CURRENT_BINARY_DIR}/quadOut.exo.4.3 COPYONLY)
+
+# 2. Name the test with the directory name
+get_filename_component(testName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
+# 3. Create the test with this name and standard executable
+###add_test(${testName} ${Albany.exe})
+if (ALBANY_EPETRA) 
+add_test(${testName} ${Albany.exe})
+endif()
+# 3'. Create the test with this name and standard executable
+if (ALBANY_IFPACK2)
+add_test(${testName}_Tpetra ${AlbanyT.exe} inputT.xml)
+endif ()
+
+# Refine the quads
+IF(ALBANY_STK_PERCEPT)
+if (ALBANY_EPETRA) 
+add_test(${testName}_Refine ${Albany.exe} inputRefine.xml)
+add_test(${testName}_2Refine ${Albany.exe} input2Refine.xml)
+endif()
+# Enrich and convert both still have bugs
+#add_test(${testName}_Enrich ${Albany.exe} inputEnrich.xml)
+#add_test(${testName}_Convert ${Albany.exe} inputConvert.xml)
+ENDIF()
+
+# 5. Repeat process for Dakota problems if "dakota.in" exists
+if (ALBANY_DAKOTA)
+if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/dakota.in)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/dakota.in
+                 ${CMAKE_CURRENT_BINARY_DIR}/dakota.in COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.xml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input.xml COPYONLY)
+  if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/dakota_nls.data)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/dakota_nls.data
+                   ${CMAKE_CURRENT_BINARY_DIR}/dakota_nls.data COPYONLY)
+  endif (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/dakota_nls.data)
+  get_filename_component(testName ${CMAKE_CURRENT_SOURCE_DIR}_Dakota NAME)
+  add_test(${testName} ${AlbanyDakota.exe})
+endif (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/dakota.in)
+endif()
+
+# 6. Repeat process for Analysis problems if "inputAnalysis.xml" exists
+if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/inputAnalysis.xml)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/inputAnalysis.xml
+                 ${CMAKE_CURRENT_BINARY_DIR}/inputAnalysis.xml COPYONLY)
+
+  if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/dakota.in)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/dakota.in
+                   ${CMAKE_CURRENT_BINARY_DIR}/dakota.in COPYONLY)
+  endif (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/dakota.in)
+
+  if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Moocho.opt)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Moocho.opt
+                   ${CMAKE_CURRENT_BINARY_DIR}/Moocho.opt COPYONLY)
+  endif (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/Moocho.opt)
+
+  get_filename_component(testName ${CMAKE_CURRENT_SOURCE_DIR}_Analysis NAME)
+  add_test(${testName} ${AlbanyAnalysis.exe})
+endif (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/inputAnalysis.xml)

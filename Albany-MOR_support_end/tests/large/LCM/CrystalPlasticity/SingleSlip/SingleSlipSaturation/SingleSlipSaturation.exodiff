@@ -1,0 +1,124 @@
+
+#  *****************************************************************
+#             EXODIFF	(Version: 2.85) Modified: 2016-08-08
+#             Authors:  Richard Drake, rrdrake@sandia.gov           
+#                       Greg Sjaardema, gdsjaar@sandia.gov          
+#             Run on    2017/01/19   17:17:55 PST
+#  *****************************************************************
+
+#  FILE 1: /home/glberge/LCM/Albany/examples/LCM/CrystalPlasticity/SingleSlip/SingleSlipSaturation/SingleSlipSaturation.gold.exo
+#   Title: Sierra Output Default Title
+#          Dim = 3, Blocks = 1, Nodes = 8, Elements = 1, Nodesets = 6, Sidesets = 0
+#          Vars: Global = 0, Nodal = 9, Element = 80, Nodeset = 0, Sideset = 0, Times = 11
+
+
+# ==============================================================
+#  NOTE: All node and element ids are reported as global ids.
+
+# NOTES:  - The min/max values are reporting the min/max in absolute value.
+#         - Time values (t) are 1-offset time step numbers.
+#         - Element block numbers are the block ids.
+#         - Node(n) and element(e) numbers are 1-offset.
+
+COORDINATES absolute 1.e-6    # min separation not calculated
+
+TIME STEPS relative 1.e-6 floor 0.0     # min:               0 @ t1 max:             0.1 @ t11
+
+
+# No GLOBAL VARIABLES
+
+NODAL VARIABLES relative 1.e-6 floor 0.0
+	displacement_x     # min:               0 @ t1,n1	max:             0.1 @ t11,n1
+	displacement_y     # min:               0 @ t1,n1	max:               0 @ t1,n1
+	displacement_z     # min:               0 @ t1,n1	max:               0 @ t1,n1
+	force_x            # min:               0 @ t1,n1	max:       5382.6226 @ t11,n4
+	force_y            # min:               0 @ t1,n1	max:       5708.7945 @ t11,n4
+	force_z            # min:               0 @ t1,n1	max:       3114.3215 @ t11,n4
+
+ELEMENT VARIABLES relative 1.e-6 floor 1.0e-10
+	Cauchy_Stress_1_01  # min:               0 @ t1,b1,e1	max:       19663.641 @ t11,b1,e1
+	Cauchy_Stress_2_01  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_3_01  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_1_02  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_2_02  # min:               0 @ t1,b1,e1	max:       19133.435 @ t11,b1,e1
+	Cauchy_Stress_3_02  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_1_03  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_2_03  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_3_03  # min:               0 @ t1,b1,e1	max:        8373.669 @ t11,b1,e1
+	Cauchy_Stress_1_04  # min:               0 @ t1,b1,e1	max:       19663.641 @ t11,b1,e1
+	Cauchy_Stress_2_04  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_3_04  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_1_05  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_2_05  # min:               0 @ t1,b1,e1	max:       19133.435 @ t11,b1,e1
+	Cauchy_Stress_3_05  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_1_06  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_2_06  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_3_06  # min:               0 @ t1,b1,e1	max:        8373.669 @ t11,b1,e1
+	Cauchy_Stress_1_07  # min:               0 @ t1,b1,e1	max:       19663.641 @ t11,b1,e1
+	Cauchy_Stress_2_07  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_3_07  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_1_08  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_2_08  # min:               0 @ t1,b1,e1	max:       19133.435 @ t11,b1,e1
+	Cauchy_Stress_3_08  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_1_09  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_2_09  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_3_09  # min:               0 @ t1,b1,e1	max:        8373.669 @ t11,b1,e1
+	Cauchy_Stress_1_10  # min:               0 @ t1,b1,e1	max:       19663.641 @ t11,b1,e1
+	Cauchy_Stress_2_10  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_3_10  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_1_11  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_2_11  # min:               0 @ t1,b1,e1	max:       19133.435 @ t11,b1,e1
+	Cauchy_Stress_3_11  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_1_12  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_2_12  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_3_12  # min:               0 @ t1,b1,e1	max:        8373.669 @ t11,b1,e1
+	Cauchy_Stress_1_13  # min:               0 @ t1,b1,e1	max:       19663.641 @ t11,b1,e1
+	Cauchy_Stress_2_13  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_3_13  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_1_14  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_2_14  # min:               0 @ t1,b1,e1	max:       19133.435 @ t11,b1,e1
+	Cauchy_Stress_3_14  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_1_15  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_2_15  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_3_15  # min:               0 @ t1,b1,e1	max:        8373.669 @ t11,b1,e1
+	Cauchy_Stress_1_16  # min:               0 @ t1,b1,e1	max:       19663.641 @ t11,b1,e1
+	Cauchy_Stress_2_16  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_3_16  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_1_17  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_2_17  # min:               0 @ t1,b1,e1	max:       19133.435 @ t11,b1,e1
+	Cauchy_Stress_3_17  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_1_18  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_2_18  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_3_18  # min:               0 @ t1,b1,e1	max:        8373.669 @ t11,b1,e1
+	Cauchy_Stress_1_19  # min:               0 @ t1,b1,e1	max:       19663.641 @ t11,b1,e1
+	Cauchy_Stress_2_19  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_3_19  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_1_20  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_2_20  # min:               0 @ t1,b1,e1	max:       19133.435 @ t11,b1,e1
+	Cauchy_Stress_3_20  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_1_21  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_2_21  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_3_21  # min:               0 @ t1,b1,e1	max:        8373.669 @ t11,b1,e1
+	Cauchy_Stress_1_22  # min:               0 @ t1,b1,e1	max:       19663.641 @ t11,b1,e1
+	Cauchy_Stress_2_22  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_3_22  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_1_23  # min:               0 @ t1,b1,e1	max:        247.1179 @ t7,b1,e1
+	Cauchy_Stress_2_23  # min:               0 @ t1,b1,e1	max:       19133.435 @ t11,b1,e1
+	Cauchy_Stress_3_23  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_1_24  # min:               0 @ t1,b1,e1	max:       1577.4935 @ t11,b1,e1
+	Cauchy_Stress_2_24  # min:               0 @ t1,b1,e1	max:       1517.0513 @ t11,b1,e1
+	Cauchy_Stress_3_24  # min:               0 @ t1,b1,e1	max:        8373.669 @ t11,b1,e1
+	CP_Residual_1	 absolute 1e-12
+	CP_Residual_2	 absolute 1e-12
+	CP_Residual_3	 absolute 1e-12
+	CP_Residual_4	 absolute 1e-12
+	CP_Residual_5	 absolute 1e-12
+	CP_Residual_6	 absolute 1e-12
+	CP_Residual_7	 absolute 1e-12
+	CP_Residual_8	 absolute 1e-12
+	
+
+# No NODESET VARIABLES
+
+# No SIDESET VARIABLES
+
